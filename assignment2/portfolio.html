@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Ky Anh Vo</title>
+    <meta charset="UTF-8">
+    <link href="./portfolio.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    <nav id="navbar">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div id="overall">
+        <header>
+            <h1>Ky Anh Vo</h1>
+            <p>Graphics programmer, Pianist, and Badminton savant (I think)</p>
+        </header>
+        <div id="container">
+            <main>
+                <!--About section-->
+                <section id="about">
+                    <h2>About</h2>
+                    <div class="content-container">
+                    <figure>
+                        <img src="https://media.licdn.com/dms/image/v2/D5603AQE5CcUIWJ_lUw/profile-displayphoto-shrink_800_800/B56ZVdRbBYHQAc-/0/1741026604081?e=1771459200&v=beta&t=892yani86NINPAg-VAIcnJ0uaPltQNLXsicSCJfTGFs"
+                            alt="my profile"
+                            width="200"
+                            height="200">
+                        <figcaption>Me a while ago...</figcaption>
+                    </figure>
+                    <p>
+                        UTD Computer Science Honors Program student, Junior. Interested in Graphics programming roles
+                        for internships.
+                    </p>
+                </div>
+                </section>
+
+                <!--Project section-->
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div class="content-container">
+                        <article class="project" id="project-1">
+                            <a href="https://github.com/KyAnhVo/beatbop" target="_blank">
+                                <h3>Beatbop</h3>
+                                <p>A microphone-reacting circle bopping to the beat</p>
+                                <ul>
+                                    <li>Cross platform, can run if machine has OpenGL running</li>
+                                    <li>Can alter circle bopping sensitiviy</li>
+                                    <li>Lightweight, can run on any machine and gpu</li>
+                                </ul>
+                            </a>
+                        </article>
+                        <article class="project" id="project-2">
+                            <a href="https://github.com/KyAnhVo/TermGL" target="_blank">
+                                <h3>TermGL (in development)</h3>
+                                <p>Terminal-based graphics library</p>
+                                <ul>
+                                    <li>Works on Linux and Windows</li>
+                                    <li>Lightweight, supports any truecolor terminal</li>
+                                    <li>Glad/GLFW-lite API, opinionated shader</li>
+                                </ul>
+                            </a>
+                        </article>
+                    </div>
+                </section>
+
+                <!--Contact form section-->
+                <section id="contact">
+                    <h2>Contact</h2>
+                    <form method="post">
+                        <label for="name">Name</label>
+                        <input id="name" type="text"><br>
+                        <label for="email">Email</label>
+                        <input id="email" type="email"><br>
+                        <label for="msg">Message</label>
+                        <textarea id="msg" rows="5" cols="20"></textarea><br>
+                        <button type="submit">Send message</button>
+                    </form>
+                </section>
+            </main>
+
+            <aside>
+                <h2>Extra information</h2>
+                <p>I also like badminton, guitar, and piano. If you want to contact that is.</p>
+            </aside>
+        </div>
+
+        <footer>
+            <p>&copy;2026 Ky Anh Vo. All rights reserved.</p>
+            <h2>Social medias</h2>
+            <ul>
+                <li>
+                    <a href="https://github.com/KyAnhVo">
+                        Github
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/in/ky-anh-vo/">
+                        LinkedIn
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
