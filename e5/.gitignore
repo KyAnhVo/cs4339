@@ -1,0 +1,6 @@
+*
+!*.js
+!*.css
+!*.html
+!package.json
+!package-lock.json
