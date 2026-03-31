@@ -1,36 +1,44 @@
-import React from 'react';
+import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import ReactDOM from 'react-dom/client';
-import { Grid, Typography, Paper } from '@mui/material';
+import ReactDOM from "react-dom/client";
+import { Grid, Typography, Paper } from "@mui/material";
 import {
-  createBrowserRouter, RouterProvider, Outlet, useParams,
-} from 'react-router-dom';
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useParams,
+} from "react-router-dom";
 
-import './styles/main.css';
-import TopBar from './components/TopBar';
-import UserDetail from './components/UserDetail';
-import UserList from './components/UserList';
-import UserPhotos from './components/UserPhotos';
+import "./styles/main.css";
+import TopBar from "./components/TopBar";
+import UserDetail from "./components/UserDetail";
+import UserList from "./components/UserList";
+import UserPhotos from "./components/UserPhotos";
 
 function Home() {
   return (
     <Typography variant="body1">
-      Welcome to your photosharing app! This
-      {' '}
-      <a href="https://mui.com/components/paper/" rel="noreferrer" target="_blank">Paper</a>
-      {' '}
+      Welcome to your photosharing app! This{" "}
+      <a
+        href="https://mui.com/components/paper/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Paper
+      </a>{" "}
       component displays the main content of the application. The
-      {/* {sm={9}} */}
-      {' '}
-      prop in the
-      {' '}
-      <a href="https://mui.com/components/grid/" rel="noreferrer" target="_blank">Grid</a>
-      {' '}
-      item
-      component makes it responsively display 9/12 of the
-      window. The Routes definitions enables us to conditionally
-      render different components to this part of the screen.
-      There is nothing specific to display here. Use your creativity and show some interesting content here.
+      {/* {sm={9}} */} prop in the{" "}
+      <a
+        href="https://mui.com/components/grid/"
+        rel="noreferrer"
+        target="_blank"
+      >
+        Grid
+      </a>{" "}
+      item component makes it responsively display 9/12 of the window. The
+      Routes definitions enables us to conditionally render different components
+      to this part of the screen. There is nothing specific to display here. Use
+      your creativity and show some interesting content here.
     </Typography>
   );
 }
@@ -38,7 +46,7 @@ function Home() {
 function UserDetailRoute() {
   const { userId } = useParams();
   // eslint-disable-next-line no-console
-  console.log('UserDetailRoute: userId is:', userId);
+  console.log("UserDetailRoute: userId is:", userId);
   return <UserDetail userId={userId} />;
 }
 
@@ -74,27 +82,29 @@ function UserLayout() {
   return <Outlet />;
 }
 
-
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Root />,
     children: [
       { index: true, element: <Home /> },
 
-      { path: 'users', element: <UserList /> },
+      { path: "users", element: <UserList /> },
 
       {
-        path: 'users/:userId',
+        path: "users/:userId",
         element: <UserLayout />,
         children: [
           { index: true, element: <UserDetailRoute /> },
-          { path: 'photos', element: <UserPhotosRoute /> },
+          {
+            path: "photos",
+            element: <UserPhotosRoute />,
+          },
         ],
       },
     ],
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById('photoshareapp'));
+const root = ReactDOM.createRoot(document.getElementById("photoshareapp"));
 root.render(<RouterProvider router={router} />);

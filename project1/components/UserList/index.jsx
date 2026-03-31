@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   Divider,
   List,
@@ -26,8 +27,8 @@ function UserItem({ user }) {
       {/* images */}
       <ListItemButton
         sx={{ flexGrow: 0 }}
-        component="a"
-        href={`/users/${user._id}/photos`}
+        component={Link}
+        to={`/users/${user._id}/photos`}
       >
         <ListItemIcon>
           <ImageIcon />
@@ -37,8 +38,8 @@ function UserItem({ user }) {
       {/* profile */}
       <ListItemButton
         sx={{ flexGrow: 0 }}
-        component="a"
-        href={`/users/${user._id}`}
+        component={Link}
+        to={`/users/${user._id}`}
       >
         <ListItemIcon>
           <PersonIcon />
@@ -50,11 +51,18 @@ function UserItem({ user }) {
 
 function UserList() {
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    api.get("/user/list").then((response) => {
-      setUsers(response.data);
-    });
+    api
+      .get("/user/list")
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        navigate("/");
+      });
   }, []);
 
   return (

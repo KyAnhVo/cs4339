@@ -10,8 +10,9 @@ import {
 } from "@mui/material";
 
 import "./styles.css";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import api from "../../lib/api";
 import {} from "@mui/material";
@@ -19,12 +20,19 @@ import {} from "@mui/material";
 function UserDetail() {
   const { userId } = useParams();
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
   useEffect(() => {
-    api.get(`/user/${userId}`).then((res) => {
-      setUser(res.data);
-      console.log(res.data);
-    });
-  }, []);
+    api
+      .get(`/user/${userId}`)
+      .then((res) => {
+        setUser(res.data);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error(error);
+        navigate("/");
+      });
+  }, [userId]);
   return (
     <>
       <Typography variant="h2">
