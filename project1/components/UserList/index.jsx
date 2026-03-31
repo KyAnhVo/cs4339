@@ -1,47 +1,77 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import {
   Divider,
   List,
   ListItem,
+  ListItemButton,
+  ListItemIcon,
   ListItemText,
   Typography,
-} from '@mui/material';
+} from "@mui/material";
+import ImageIcon from "@mui/icons-material/Image";
+import PersonIcon from "@mui/icons-material/Person";
 
-import './styles.css';
+import "./styles.css";
+import api from "../../lib/api";
+
+function UserItem({ user }) {
+  return (
+    <ListItem>
+      {/* name */}
+      <ListItemText
+        primary={user.first_name + " " + user.last_name}
+        sx={{ flexGrow: 1 }}
+      />
+
+      {/* images */}
+      <ListItemButton
+        sx={{ flexGrow: 0 }}
+        component="a"
+        href={`/users/${user._id}/photos`}
+      >
+        <ListItemIcon>
+          <ImageIcon />
+        </ListItemIcon>
+      </ListItemButton>
+
+      {/* profile */}
+      <ListItemButton
+        sx={{ flexGrow: 0 }}
+        component="a"
+        href={`/users/${user._id}`}
+      >
+        <ListItemIcon>
+          <PersonIcon />
+        </ListItemIcon>
+      </ListItemButton>
+    </ListItem>
+  );
+}
 
 function UserList() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    api.get("/user/list").then((response) => {
+      setUsers(response.data);
+    });
+  }, []);
+
   return (
     <div>
-      <Typography variant="body1">
-        This is the user list, which takes up 3/12 of the window. You might
-        choose to use
-        {' '}
-        <a href="https://mui.com/components/lists/" rel="noreferrer" target="_blank">Lists</a>
-        {' '}
-        and
-        {' '}
-        <a href="https://mui.com/components/dividers/" rel="noreferrer" target="_blank">Dividers</a>
-        {' '}
-        to
-        display your users like so:
+      <Typography variant="h2" sx={{ flexGrow: 1, textAlign: "center" }}>
+        Users
       </Typography>
+      <Divider />
+      <Divider />
       <List component="nav">
-        <ListItem>
-          <ListItemText primary="Item #1" />
-        </ListItem>
-        <Divider />
-        <ListItem>
-          <ListItemText primary="Item #2" />
-        </ListItem>
-        <Divider />
-        <ListItem>
-          <ListItemText primary="Item #3" />
-        </ListItem>
-        <Divider />
+        {users.map((user) => (
+          <>
+            <UserItem user={user} />
+            <Divider />
+          </>
+        ))}
       </List>
-      <Typography variant="body1">
-        The model comes in from API: /user/list
-      </Typography>
     </div>
   );
 }

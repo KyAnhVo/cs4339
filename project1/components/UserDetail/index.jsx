@@ -1,22 +1,50 @@
-import React from 'react';
+import React from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
-import PropTypes from 'prop-types';
-import { Typography } from '@mui/material';
+import PropTypes from "prop-types";
+import {
+  Divider,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 
-import './styles.css';
+import "./styles.css";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+
+import api from "../../lib/api";
+import {} from "@mui/material";
 
 function UserDetail() {
+  const { userId } = useParams();
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    api.get(`/user/${userId}`).then((res) => {
+      setUser(res.data);
+      console.log(res.data);
+    });
+  }, []);
   return (
-    <Typography variant="body1">
-      This should be the UserDetail view of the PhotoShare app. 
-      Should obtain the userId from the route using React Router (e.g., useParams()),
-      and 
-      fetch the model for the user from API: /user/:userId
-
-    </Typography>
+    <>
+      <Typography variant="h2">
+        {user.first_name + " " + user.last_name}
+      </Typography>
+      <List>
+        <ListItem>
+          <ListItemText primary={"Location"} secondary={user.location} />
+        </ListItem>
+        <Divider />
+        <ListItem>
+          <ListItemText primary={"Description"} secondary={user.description} />
+        </ListItem>
+        <Divider />
+        <ListItem>
+          <ListItemText primary={"Occupation"} secondary={user.occupation} />
+        </ListItem>
+      </List>
+    </>
   );
 }
-
-
 
 export default UserDetail;
